@@ -292,13 +292,29 @@ export default function Home() {
         .nav-links a:hover{color:var(--blue)}
         .nav-cta{background:var(--gold);color:#0B0F17;font-weight:600;font-size:13px;padding:8px 18px;border-radius:2px;text-decoration:none;font-family:'Share Tech Mono',monospace;transition:background 0.2s}
         .nav-cta:hover{background:var(--gold-light)}
-        .hero{position:relative;z-index:1;padding:32px 2rem 60px;max-width:1100px;margin:0 auto;text-align:center}
-        .hero-inner{background:#000;padding:32px 48px;border-radius:4px;display:inline-block;width:100%;}
-        .hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--blue);letter-spacing:3px;margin-bottom:32px;display:flex;align-items:center;justify-content:center;gap:8px}
-        .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--blue);opacity:0.5}
-        .hero-logo{display:flex;justify-content:center;margin-bottom:32px}
-        .hero-logo img{height:200px;width:auto;max-width:90%}
-        .hero-subtitle{font-size:18px;color:var(--text-muted);max-width:560px;margin:0 auto 40px;line-height:1.6}
+        .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+        .nav-hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.2s}
+        .nav-mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(11,15,23,0.98);border-bottom:1px solid var(--border);padding:16px 2rem;flex-direction:column;gap:16px;z-index:99;backdrop-filter:blur(8px)}
+        .nav-mobile-menu.open{display:flex}
+        .nav-mobile-menu a{color:var(--text-muted);text-decoration:none;font-size:14px;font-family:'Share Tech Mono',monospace;padding:8px 0;border-bottom:1px solid var(--border)}
+        @media(max-width:700px){
+          .nav-links{display:none}
+          .nav-cta{display:none}
+          .nav-badge{display:none}
+          .nav-hamburger{display:flex}
+        }
+        .hero{position:relative;z-index:1;padding:16px 2rem 24px;max-width:1100px;margin:0 auto;text-align:center}
+        .hero-inner{background:#000;padding:16px 48px 24px;border-radius:4px;display:inline-block;width:100%;}
+        .hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--blue);letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+        .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--blue);opacity:0.5;flex-shrink:0}
+        @media(max-width:700px){.hero-eyebrow{font-size:10px;letter-spacing:1px}}
+        .hero-logo{display:flex;justify-content:center;margin-bottom:12px}
+        .hero-logo img{height:200px;width:auto;max-width:90%;object-fit:contain}
+        @media(max-width:700px){
+           .hero-logo img{height:160px;width:auto;max-width:80%}
+            .hero-inner{padding:24px 16px}
+          }
+        .hero-subtitle{font-family:'Share Tech Mono',monospace;font-size:15px;color:var(--text-muted);max-width:560px;margin:0 auto 20px;line-height:1.6}
         .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
         .btn-primary{background:var(--gold);color:#0B0F17;font-weight:700;font-size:14px;padding:14px 28px;border-radius:2px;text-decoration:none;font-family:'Share Tech Mono',monospace;transition:background 0.2s;display:inline-flex;align-items:center;gap:8px}
         .btn-primary:hover{background:var(--gold-light)}
@@ -382,19 +398,31 @@ export default function Home() {
 
       <div className="pixel-grid"></div>
 
-      <nav>
-        <div className="nav-logo">
-          <img src="/oscarbase-logo.png" alt="OscarBase" />
-          <div className="nav-badge">API v1.0</div>
-        </div>
-        <div className="nav-links">
-          <a href="#endpoints">Endpoints</a>
-          <a href="#resources">Resources</a>
-          <a href="#auth">Auth</a>
-          <a href="#examples">Examples</a>
-        </div>
-        <a href="#endpoints" className="nav-cta">EXPLORE API →</a>
-      </nav>
+<nav>
+  <div className="nav-logo">
+    <img src="/oscarbase-logo.png" alt="OscarBase" />
+    <div className="nav-badge">API v1.0</div>
+  </div>
+  <div className="nav-links">
+    <a href="#endpoints">Endpoints</a>
+    <a href="#resources">Resources</a>
+    <a href="#auth">Auth</a>
+    <a href="#examples">Examples</a>
+  </div>
+  <a href="#endpoints" className="nav-cta">EXPLORE API →</a>
+  <div className="nav-hamburger" onClick={(e) => {
+    const menu = document.getElementById('mobile-menu')
+    menu?.classList.toggle('open')
+  }}>
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div className="nav-mobile-menu" id="mobile-menu">
+  <a href="#endpoints" onClick={() => document.getElementById('mobile-menu')?.classList.remove('open')}>Endpoints</a>
+  <a href="#resources" onClick={() => document.getElementById('mobile-menu')?.classList.remove('open')}>Resources</a>
+  <a href="#auth" onClick={() => document.getElementById('mobile-menu')?.classList.remove('open')}>Auth</a>
+  <a href="#examples" onClick={() => document.getElementById('mobile-menu')?.classList.remove('open')}>Examples</a>
+</div>
 
  <div className="hero">
   <div className="hero-inner">
