@@ -1,0 +1,126 @@
+# OscarBase API
+
+OscarBase is a free, public REST API providing complete Academy Awards data from 1929 to present. It covers every nomination, winner, film, filmmaker, ceremony, category, and nominated song across all 97 Oscar ceremonies.
+
+Base URL: https://api.oscarbase.com
+
+## Authentication
+
+All GET endpoints are public and require no authentication.
+POST and PATCH endpoints require an API key passed as the `x-api-key` header.
+
+## Pagination
+
+List endpoints support `?page=` (default: 1) and `?limit=` (default: 25, max: 100) parameters.
+Paginated responses include a `pagination` object: `{ total, page, limit, totalPages, hasNextPage, hasPrevPage }`.
+Ceremonies and Categories endpoints always return full lists (no pagination needed).
+
+## Year Filtering
+
+All list endpoints support year filtering:
+- `?year=2024` — exact year match
+- `?yearStart=1990&yearEnd=1999` — year range
+- `?yearStart=2000` — from year to present
+- `?yearEnd=1950` — from beginning to year
+
+## Multi-ID Filtering
+
+All list endpoints support comma-separated ID filtering:
+- `?ids=1,2,3` — fetch specific records by ID
+- Nominations also supports: `?ceremony_ids=`, `?category_ids=`, `?movie_ids=`, `?nominee_ids=`
+
+## Endpoints
+
+### GET /api/nominations
+Returns paginated list of nominations.
+Query params: year, yearStart, yearEnd, nominee (partial), movie (partial), category (partial), winner (boolean), is_song (boolean), ids, ceremony_ids, category_ids, movie_ids, nominee_ids, page, limit
+Response fields: id, ceremony_id, ceremony_year, category_id, category, movie_id, movie, nominee_id, nominee, song_id, song_title, is_song, winner
+
+### GET /api/nominations/:id
+Returns single nomination with embedded related objects.
+Response includes full movie, ceremony, category, nominee, and song objects embedded.
+
+### GET /api/ceremonies
+Returns all 97 ceremonies (no pagination).
+Query params: ids
+Response fields: id, ceremony_year, date, show_title, venue, overview, movies_eligible, wikiurl, moment_1_caption, moment_1_img_url, moment_2_caption, moment_2_img_url, moment_3_caption, moment_3_img_url
+
+### GET /api/ceremonies/:id
+Returns single ceremony record.
+
+### GET /api/movies
+Returns paginated list of TMDB-enriched movies.
+Query params: title (partial), tmdb_id, imdb_id, genre, ids, page, limit
+Response fields: id, title, tagline, overview, release_date, runtime, genres (array), origin_country (array), tmdb_id, imdb_id, poster_path (full URL), backdrop_path (full URL)
+
+### GET /api/movies/:id
+Returns single movie with all nominations embedded.
+
+### GET /api/nominees
+Returns paginated list of TMDB-enriched people.
+Query params: name (partial), tmdb_person_id, imdb_id, known_for_department, ids, page, limit
+Response fields: id, name, biography, birthday, deathday, place_of_birth, known_for_department, homepage, tmdb_person_id, imdb_id, profile_path (full URL)
+
+### GET /api/nominees/:id
+Returns single nominee with full Oscar nomination history embedded.
+
+### GET /api/categories
+Returns all 29 award categories (no pagination).
+Query params: category_name (partial), category_group (partial), ids
+Response fields: id, category_name, category_group, definition, era, history
+
+### GET /api/categories/:id
+Returns single category with all nominations embedded.
+
+### GET /api/songs
+Returns paginated list of Spotify-enriched nominated songs.
+Query params: title (partial), artist (partial), year, ids, page, limit
+Response fields: id, original_title, artist_names, spotify_id, spotify_url, spotify_track_name, spotify_album_name, spotify_year
+
+### GET /api/songs/:id
+Returns single song with all nominations embedded.
+
+### GET /api/search
+Full-text search across nominations table.
+Query params: q (required, min 2 chars), winner (boolean), year, yearStart, yearEnd, page, limit
+Searches across: nominee, movie, category fields simultaneously.
+Response includes query string echoed back plus paginated nomination results.
+
+## Example Queries
+
+All of Meryl Streep's wins:
+GET /api/nominations?nominee=Meryl+Streep&winner=true
+
+Best Picture winners in the 1990s:
+GET /api/nominations?category=Best+Picture&winner=true&yearStart=1990&yearEnd=1999
+
+Find a movie by IMDB ID:
+GET /api/movies?imdb_id=tt15398776
+
+Find a person by TMDB ID:
+GET /api/nominees?tmdb_person_id=12345
+
+Search for Spielberg nominations:
+GET /api/search?q=spielberg&winner=true
+
+All nominated songs by Billie Eilish:
+GET /api/songs?artist=Billie+Eilish
+
+Full ceremony detail for the 97th Academy Awards:
+GET /api/ceremonies/97
+
+All nominations from multiple specific ceremonies:
+GET /api/nominations?ceremony_ids=95,96,97
+
+Acting category nominations only:
+GET /api/categories?category_group=Acting
+
+## Data Notes
+
+- movies.genres and movies.origin_country are arrays
+- poster_path and backdrop_path are full HTTPS URLs (not relative paths)
+- profile_path on nominees is a full HTTPS URL
+- nominations.id is a bigint and is not auto-generated
+- The nominees table contains both people and production companies
+- song nominations have is_song=true and a non-null song_id
+- ceremony_year on nominations is denormalized from the ceremonies table
