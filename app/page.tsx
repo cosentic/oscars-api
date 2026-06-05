@@ -345,12 +345,12 @@ export default function Home() {
         .params-table th{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-muted);text-align:left;padding:6px 12px;letter-spacing:1px;border-bottom:1px solid var(--border)}
         .params-table td{padding:8px 12px;border-bottom:1px solid rgba(46,57,74,0.5);vertical-align:top}
         .params-table tr:last-child td{border-bottom:none}
-        .param-name{font-family:'Share Tech Mono',monospace;color:var(--blue-light)}
-        .param-type{font-family:'Share Tech Mono',monospace;color:var(--text-muted);font-size:11px}
+        .param-name{font-family:'Share Tech Mono',monospace;color:var(--blue-light);display:block}
+        .param-type{font-family:'Share Tech Mono',monospace;color:var(--text-muted);font-size:11px;display:block;margin-top:2px}
         .param-req{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--error);background:rgba(255,107,107,0.1);padding:2px 6px;border-radius:2px}
-        .param-opt{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-muted);background:rgba(46,57,74,0.5);padding:2px 6px;border-radius:2px}
+        .param-opt{display:none}
         .block-label{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;margin-bottom:8px}
-        .code-block{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:12px;line-height:1.8;overflow-x:auto}
+        .code-block{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:12px;line-height:1.8;overflow-x:auto;word-break:break-all;white-space:pre-wrap}
         .copy-url{cursor:pointer;color:var(--gold);transition:color 0.2s;border-bottom:1px dashed rgba(245,197,66,0.4)}
         .copy-url:hover{color:var(--gold-light)}
         .resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
@@ -369,7 +369,15 @@ export default function Home() {
         .cursor{display:inline-block;width:8px;height:14px;background:var(--gold);animation:blink 1s infinite;vertical-align:middle;margin-left:2px}
         @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
         .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-        @media(max-width:700px){.two-col{grid-template-columns:1fr}.endpoint-desc{display:none}}
+        .endpoint-body{overflow-x:hidden}
+        .params-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+      @media(max-width:700px){
+        .two-col{grid-template-columns:1fr}
+        .endpoint-desc{display:none}
+        .endpoint-header{flex-wrap:wrap;gap:8px}
+        .endpoint-path{font-size:12px}
+        .code-block{font-size:11px;overflow-x:auto;-webkit-overflow-scrolling:touch;word-break:break-all;white-space:pre-wrap}
+      }
       `}</style>
 
       <div className="pixel-grid"></div>
@@ -474,19 +482,21 @@ export default function Home() {
                   <div>
                     {ep.params.length > 0 && (
                       <>
-                        <div className="block-label" style={{marginBottom:8}}>QUERY PARAMETERS</div>
+                      <div className="block-label" style={{marginBottom:8}}>QUERY PARAMETERS <span style={{fontFamily:'Inter,sans-serif',fontSize:11,color:'var(--text-muted)',letterSpacing:0,textTransform:'none',fontWeight:400}}>(all optional unless noted)</span></div>
                         <table className="params-table">
-                          <thead><tr><th>PARAM</th><th>TYPE</th><th></th><th>DESCRIPTION</th></tr></thead>
-                          <tbody>
-                            {ep.params.map(p => (
-                              <tr key={p.name}>
-                                <td className="param-name">{p.name}</td>
-                                <td className="param-type">{p.type}</td>
-                                <td>{p.req ? <span className="param-req">required</span> : <span className="param-opt">optional</span>}</td>
-                                <td style={{color:'var(--text-muted)',fontSize:13}}>{p.desc}</td>
-                              </tr>
-                            ))}
-                          </tbody>
+                        <thead><tr><th>PARAM</th><th>DESCRIPTION</th></tr></thead>
+                        <tbody>
+                          {ep.params.map(p => (
+                            <tr key={p.name}>
+                              <td>
+                                <span className="param-name">{p.name}</span>
+                                <span className="param-type">({p.type})</span>
+                                {p.req && <span className="param-req">required</span>}
+                              </td>
+                              <td style={{color:'var(--text-muted)',fontSize:13}}>{p.desc}</td>
+                            </tr>
+                          ))}
+                        </tbody>
                         </table>
                       </>
                     )}
@@ -497,16 +507,18 @@ export default function Home() {
                   <div>
                     <div className="block-label" style={{marginBottom:8}}>RESPONSE FIELDS</div>
                     <table className="params-table">
-                      <thead><tr><th>FIELD</th><th>TYPE</th><th>DESCRIPTION</th></tr></thead>
-                      <tbody>
-                        {ep.fields.map(f => (
-                          <tr key={f.name+f.type}>
-                            <td className="param-name">{f.name}</td>
-                            <td className="param-type">{f.type}</td>
-                            <td style={{color:'var(--text-muted)',fontSize:13}}>{f.desc}</td>
-                          </tr>
-                        ))}
-                      </tbody>
+                    <thead><tr><th>FIELD</th><th>DESCRIPTION</th></tr></thead>
+                    <tbody>
+                      {ep.fields.map(f => (
+                        <tr key={f.name+f.type}>
+                          <td>
+                            <span className="param-name">{f.name}</span>
+                            <span className="param-type">({f.type})</span>
+                          </td>
+                          <td style={{color:'var(--text-muted)',fontSize:13}}>{f.desc}</td>
+                        </tr>
+                      ))}
+                    </tbody>
                     </table>
                   </div>
                 </div>
