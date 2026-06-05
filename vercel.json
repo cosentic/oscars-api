@@ -1,8 +1,1 @@
-{
-  "rateLimit": {
-    "algo": "fixed-window",
-    "window": "60s",
-    "limit": 100,
-    "headers": true
-  }
-}
+{}
