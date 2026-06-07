@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
   if (winner !== null && winner !== undefined) query = query.eq('winner', winner === 'true')
   if (is_song !== null && is_song !== undefined) query = query.eq('is_song', is_song === 'true')
 
-  query = query.order('ceremony_year', { ascending: false }).range(from, to)
+  query = query.order('ceremony_year', { ascending: false }).order('movie', { ascending: true }).range(from, to)
 
   const { data, error, count } = await query
 
