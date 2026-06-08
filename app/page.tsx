@@ -267,6 +267,49 @@ export default function Home() {
       ],
       example: '/api/search?q=spielberg&winner=true&yearStart=1990',
     },
+    {
+  id: 'ep-stats-top-movies',
+  method: 'GET',
+  path: '/api/stats/top-movies',
+  desc: 'Most nominated films',
+  params: [
+    {name:'sort',type:'string',req:false,desc:'Sort by "nominations" (default) or "wins"'},
+    {name:'category',type:'string',req:false,desc:'Partial match on category name'},
+    {name:'category_group',type:'string',req:false,desc:'e.g. Acting, Craft, Direction'},
+    {name:'yearStart',type:'integer',req:false,desc:'Start of year range'},
+    {name:'yearEnd',type:'integer',req:false,desc:'End of year range'},
+    {name:'limit',type:'integer',req:false,desc:'Number of results (default: 25, max: 100)'},
+  ],
+  fields: [
+    {name:'movie_id',type:'integer',desc:'Movie ID'},
+    {name:'movie',type:'text',desc:'Film title'},
+    {name:'total_nominations',type:'integer',desc:'Number of unique categories nominated'},
+    {name:'total_wins',type:'integer',desc:'Number of unique categories won'},
+  ],
+  example: '/api/stats/top-movies?sort=wins&limit=10',
+},
+{
+  id: 'ep-stats-top-nominees',
+  method: 'GET',
+  path: '/api/stats/top-nominees',
+  desc: 'Most nominated people',
+  params: [
+    {name:'sort',type:'string',req:false,desc:'Sort by "nominations" (default) or "wins"'},
+    {name:'known_for_department',type:'string',req:false,desc:'e.g. Acting, Directing, Writing'},
+    {name:'category',type:'string',req:false,desc:'Partial match on category name'},
+    {name:'category_group',type:'string',req:false,desc:'e.g. Acting, Craft, Direction'},
+    {name:'yearStart',type:'integer',req:false,desc:'Start of year range'},
+    {name:'yearEnd',type:'integer',req:false,desc:'End of year range'},
+    {name:'limit',type:'integer',req:false,desc:'Number of results (default: 25, max: 100)'},
+  ],
+  fields: [
+    {name:'nominee_id',type:'integer',desc:'Nominee ID'},
+    {name:'nominee',type:'text',desc:'Nominee name'},
+    {name:'total_nominations',type:'integer',desc:'Total number of nominations'},
+    {name:'total_wins',type:'integer',desc:'Total number of wins'},
+  ],
+  example: '/api/stats/top-nominees?known_for_department=Directing&sort=wins',
+},
   ]
 
   return (
@@ -612,6 +655,8 @@ export default function Home() {
             {label:"SEARCH FOR SPIELBERG NOMINATIONS", path:"/api/search?q=spielberg&winner=true"},
             {label:"ALL NOMINATED SONGS BY BILLIE EILISH", path:"/api/songs?artist=Billie+Eilish"},
             {label:"FULL CEREMONY DETAIL", path:"/api/ceremonies/97"},
+            {label:"MOST NOMINATED FILMS OF ALL TIME", path:"/api/stats/top-movies?limit=10"},
+            {label:"MOST WINNING DIRECTORS", path:"/api/stats/top-nominees?known_for_department=Directing&sort=wins"},
           ].map(ex => (
             <div key={ex.label} className="auth-box" style={{padding:'20px 24px'}}>
               <div style={{fontFamily:"'Share Tech Mono',monospace",fontSize:11,color:'var(--text-muted)',letterSpacing:2,marginBottom:12}}>{ex.label}</div>
