@@ -335,6 +335,11 @@ export default function Home() {
         .stats-bar{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card);padding:24px 2rem;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
         .stat-item{text-align:center;padding:12px 40px;border-right:1px solid var(--border)}
         .stat-item:last-child{border-right:none}
+        @media(max-width:700px){
+          .stat-item{width:50%;border-right:none;border-bottom:1px solid var(--border);padding:16px 0}
+          .stat-item:nth-child(odd):not(:last-child){border-right:1px solid var(--border)}
+          .stat-item:last-child{border-bottom:none;width:100%}
+        }
         .stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);letter-spacing:2px}
         .stat-label{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-top:2px}
         .section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:60px 2rem}
