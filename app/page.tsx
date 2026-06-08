@@ -537,11 +537,23 @@ export default function Home() {
 
       <div className="pixel-divider"></div>
 
-      <div className="section" id="endpoints">
-        <div className="section-header">
-          <div className="section-eyebrow">COMPLETE REFERENCE</div>
-          <div className="section-title">ALL <span>ENDPOINTS</span></div>
-        </div>
+<div className="section" id="endpoints">
+  <div className="section-header">
+    <div className="section-eyebrow">COMPLETE REFERENCE</div>
+    <div className="section-title">ALL <span>ENDPOINTS</span></div>
+  </div>
+  <div style={{display:'flex',gap:16,marginBottom:32,flexWrap:'wrap'}}>
+    <a href="https://api.oscarbase.com/llms.txt" target="_blank" style={{flex:1,minWidth:200,background:'var(--card)',border:'1px solid var(--border)',borderRadius:4,padding:'16px 20px',textDecoration:'none',transition:'border-color 0.2s',display:'block'}} onMouseOver={e=>(e.currentTarget.style.borderColor='var(--blue)')} onMouseOut={e=>(e.currentTarget.style.borderColor='var(--border)')}>
+      <div style={{fontFamily:"'Share Tech Mono',monospace",fontSize:11,color:'var(--blue)',letterSpacing:2,marginBottom:6}}>AI / LLM REFERENCE</div>
+      <div style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:22,color:'var(--text)',letterSpacing:1,marginBottom:4}}>llms.txt</div>
+      <div style={{fontSize:13,color:'var(--text-muted)',lineHeight:1.5}}>Plain-text API reference optimized for Claude, ChatGPT, and other AI assistants.</div>
+    </a>
+    <a href="https://api.oscarbase.com/openapi.json" target="_blank" style={{flex:1,minWidth:200,background:'var(--card)',border:'1px solid var(--border)',borderRadius:4,padding:'16px 20px',textDecoration:'none',transition:'border-color 0.2s',display:'block'}} onMouseOver={e=>(e.currentTarget.style.borderColor='var(--blue)')} onMouseOut={e=>(e.currentTarget.style.borderColor='var(--border)')}>
+      <div style={{fontFamily:"'Share Tech Mono',monospace",fontSize:11,color:'var(--blue)',letterSpacing:2,marginBottom:6}}>OPENAPI SPEC</div>
+      <div style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:22,color:'var(--text)',letterSpacing:1,marginBottom:4}}>openapi.json</div>
+      <div style={{fontSize:13,color:'var(--text-muted)',lineHeight:1.5}}>OpenAPI 3.0 spec for Cursor, GitHub Copilot, and other developer tools.</div>
+    </a>
+  </div>
         <div className="endpoints-grid">
           {endpoints.map(ep => (
             <div key={ep.id} className="endpoint-card" id={ep.id}>
