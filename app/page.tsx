@@ -303,17 +303,16 @@ export default function Home() {
           .nav-badge{display:none}
           .nav-hamburger{display:flex}
         }
-        .hero{position:relative;z-index:1;padding:16px 2rem 24px;max-width:1100px;margin:0 auto;text-align:center}
-        .hero-inner{background:#000;padding:16px 48px 24px;border-radius:4px;display:inline-block;width:100%;}
-        .hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--blue);letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
-        .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--blue);opacity:0.5;flex-shrink:0}
-        @media(max-width:700px){.hero-eyebrow{font-size:10px;letter-spacing:1px}}
-        .hero-logo{display:flex;justify-content:center;margin-bottom:12px}
-        .hero-logo img{height:200px;width:auto;max-width:90%;object-fit:contain}
+        .hero{position:relative;z-index:1;max-width:100%;margin:0 auto;text-align:center}
+        .hero-inner{background:#000;padding:32px 2rem;width:100%;display:block}
+        .hero-logo{display:flex;justify-content:center;margin-bottom:0}
+        .hero-logo img{height:180px;width:auto;max-width:80%;object-fit:contain}
+        .hero-below{max-width:1100px;margin:0 auto;padding:32px 2rem;text-align:center}
+        .hero-subtitle{font-family:'Share Tech Mono',monospace;font-size:15px;color:var(--text-muted);max-width:560px;margin:0 auto 20px;line-height:1.6}
         @media(max-width:700px){
-           .hero-logo img{height:160px;width:auto;max-width:80%}
-            .hero-inner{padding:24px 16px}
-          }
+          .hero-logo img{height:120px;width:auto;max-width:90%}
+          .hero-inner{padding:24px 1rem}
+        }
         .hero-subtitle{font-family:'Share Tech Mono',monospace;font-size:15px;color:var(--text-muted);max-width:560px;margin:0 auto 20px;line-height:1.6}
         .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
         .btn-primary{background:var(--gold);color:#0B0F17;font-weight:700;font-size:14px;padding:14px 28px;border-radius:2px;text-decoration:none;font-family:'Share Tech Mono',monospace;transition:background 0.2s;display:inline-flex;align-items:center;gap:8px}
@@ -424,16 +423,17 @@ export default function Home() {
   <a href="#examples" onClick={() => document.getElementById('mobile-menu')?.classList.remove('open')}>Examples</a>
 </div>
 
- <div className="hero">
+<div className="hero">
   <div className="hero-inner">
-    <div className="hero-eyebrow">ACADEMY AWARDS DATA API</div>
     <div className="hero-logo">
       <img src="/oscarbase-logo.png" alt="OscarBase" />
     </div>
+  </div>
+  <div className="hero-below">
     <p className="hero-subtitle">Complete Academy Awards data from 1929 to present. Every nomination, winner, film, and filmmaker — queryable in milliseconds.</p>
     <div className="hero-actions">
-      <a href="#endpoints" className="btn-primary">⬡ BROWSE ENDPOINTS</a>
-      <a href="#examples" className="btn-secondary">VIEW EXAMPLES →</a>
+      <a href="#endpoints" className="btn-primary">ENDPOINTS →</a>
+      <a href="#examples" className="btn-secondary">EXAMPLES →</a>
     </div>
   </div>
 </div>
