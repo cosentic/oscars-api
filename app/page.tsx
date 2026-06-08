@@ -398,10 +398,10 @@ export default function Home() {
       <div className="pixel-grid"></div>
 
 <nav>
-  <div className="nav-logo">
-    <img src="/oscarbase-logo.png" alt="OscarBase" />
-    <div className="nav-badge">API v1.0</div>
-  </div>
+<div className="nav-logo">
+  <span style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:23,letterSpacing:2,color:'var(--gold)'}}>OSCARBASE</span>
+  <div className="nav-badge">API v1.0</div>
+</div>
   <div className="nav-links">
     <a href="#endpoints">Endpoints</a>
     <a href="#resources">Resources</a>
