@@ -124,3 +124,35 @@ GET /api/categories?category_group=Acting
 - The nominees table contains both people and production companies
 - song nominations have is_song=true and a non-null song_id
 - ceremony_year on nominations is denormalized from the ceremonies table
+
+### GET /api/stats/top-movies
+Returns films ranked by total nomination count (unique categories nominated).
+Query params: sort ("nominations" default or "wins"), category (partial), category_group, yearStart, yearEnd, limit (default 25, max 100)
+Response fields: movie_id, movie, total_nominations, total_wins
+Note: counts each category once regardless of how many individual nominees — so Best Picture with 4 producers counts as 1 nomination.
+
+### GET /api/stats/top-nominees
+Returns people ranked by total nomination count.
+Query params: sort ("nominations" default or "wins"), known_for_department (partial, e.g. Acting, Directing, Writing), category (partial), category_group, yearStart, yearEnd, limit (default 25, max 100)
+Response fields: nominee_id, nominee, total_nominations, total_wins
+Note: each nomination is counted individually — a person nominated for Best Actor and Best Picture counts as 2.
+
+## Stats Example Queries
+
+Most nominated films of all time:
+GET /api/stats/top-movies?limit=10
+
+Most winning films of all time:
+GET /api/stats/top-movies?sort=wins&limit=10
+
+Most nominated directors:
+GET /api/stats/top-nominees?known_for_department=Directing
+
+Most winning actors:
+GET /api/stats/top-nominees?known_for_department=Acting&sort=wins
+
+Most nominated films in the Acting category group:
+GET /api/stats/top-movies?category_group=Acting
+
+Most nominated people in a specific year range:
+GET /api/stats/top-nominees?yearStart=2000&yearEnd=2024&sort=wins

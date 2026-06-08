@@ -297,3 +297,58 @@ x-api-key: your-key
 ## License
 
 Data sourced from public Academy Awards records, enriched via TMDB and Spotify APIs.
+
+---
+
+### Stats
+
+```
+GET /api/stats/top-movies
+GET /api/stats/top-nominees
+```
+
+#### `/api/stats/top-movies`
+Returns films ranked by total nomination count. Counts each category once regardless of how many individual nominees (e.g. Best Picture with 4 producers = 1 nomination).
+
+**Query parameters:** `sort` (nominations or wins), `category`, `category_group`, `yearStart`, `yearEnd`, `limit` (default 25, max 100)
+
+**Response:**
+```json
+{
+  "data": [
+    { "movie_id": 4375, "movie": "Titanic", "total_nominations": 16, "total_wins": 12 }
+  ]
+}
+```
+
+#### `/api/stats/top-nominees`
+Returns people ranked by total nomination count. Each nomination counted individually.
+
+**Query parameters:** `sort` (nominations or wins), `known_for_department`, `category`, `category_group`, `yearStart`, `yearEnd`, `limit` (default 25, max 100)
+
+**Response:**
+```json
+{
+  "data": [
+    { "nominee_id": 142, "nominee": "Meryl Streep", "total_nominations": 21, "total_wins": 3 }
+  ]
+}
+```
+
+**Stats examples:**
+```bash
+# Most nominated films ever
+GET /api/stats/top-movies?limit=10
+
+# Most winning films ever
+GET /api/stats/top-movies?sort=wins&limit=10
+
+# Most nominated directors
+GET /api/stats/top-nominees?known_for_department=Directing
+
+# Most winning actors
+GET /api/stats/top-nominees?known_for_department=Acting&sort=wins
+
+# Most nominated people in the 2000s
+GET /api/stats/top-nominees?yearStart=2000&yearEnd=2009&sort=nominations
+```

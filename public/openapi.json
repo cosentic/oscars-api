@@ -2,14 +2,17 @@
   "openapi": "3.0.3",
   "info": {
     "title": "OscarBase API",
-    "description": "Complete Academy Awards data from 1929 to present. Every nomination, winner, film, and filmmaker — queryable in milliseconds.",
+    "description": "Complete Academy Awards data from 1929 to present. Every nomination, winner, film, and filmmaker \u2014 queryable in milliseconds.",
     "version": "1.0.0",
     "contact": {
       "url": "https://api.oscarbase.com"
     }
   },
   "servers": [
-    { "url": "https://api.oscarbase.com", "description": "Production" }
+    {
+      "url": "https://api.oscarbase.com",
+      "description": "Production"
+    }
   ],
   "security": [],
   "components": {
@@ -24,116 +27,319 @@
       "Pagination": {
         "type": "object",
         "properties": {
-          "total": { "type": "integer" },
-          "page": { "type": "integer" },
-          "limit": { "type": "integer" },
-          "totalPages": { "type": "integer" },
-          "hasNextPage": { "type": "boolean" },
-          "hasPrevPage": { "type": "boolean" }
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "totalPages": {
+            "type": "integer"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          },
+          "hasPrevPage": {
+            "type": "boolean"
+          }
         }
       },
       "Nomination": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
-          "ceremony_id": { "type": "integer" },
-          "ceremony_year": { "type": "integer" },
-          "category_id": { "type": "integer" },
-          "category": { "type": "string" },
-          "movie_id": { "type": "integer" },
-          "movie": { "type": "string" },
-          "nominee_id": { "type": "integer" },
-          "nominee": { "type": "string" },
-          "song_id": { "type": "integer", "nullable": true },
-          "song_title": { "type": "string", "nullable": true },
-          "is_song": { "type": "boolean" },
-          "winner": { "type": "boolean" }
+          "id": {
+            "type": "integer"
+          },
+          "ceremony_id": {
+            "type": "integer"
+          },
+          "ceremony_year": {
+            "type": "integer"
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "category": {
+            "type": "string"
+          },
+          "movie_id": {
+            "type": "integer"
+          },
+          "movie": {
+            "type": "string"
+          },
+          "nominee_id": {
+            "type": "integer"
+          },
+          "nominee": {
+            "type": "string"
+          },
+          "song_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "song_title": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_song": {
+            "type": "boolean"
+          },
+          "winner": {
+            "type": "boolean"
+          }
         }
       },
       "Ceremony": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
-          "ceremony_year": { "type": "integer" },
-          "date": { "type": "string", "format": "date" },
-          "show_title": { "type": "string" },
-          "venue": { "type": "string" },
-          "overview": { "type": "string" },
-          "movies_eligible": { "type": "string" },
-          "wikiurl": { "type": "string" },
-          "moment_1_caption": { "type": "string" },
-          "moment_1_img_url": { "type": "string" },
-          "moment_2_caption": { "type": "string" },
-          "moment_2_img_url": { "type": "string" },
-          "moment_3_caption": { "type": "string" },
-          "moment_3_img_url": { "type": "string" }
+          "id": {
+            "type": "integer"
+          },
+          "ceremony_year": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "show_title": {
+            "type": "string"
+          },
+          "venue": {
+            "type": "string"
+          },
+          "overview": {
+            "type": "string"
+          },
+          "movies_eligible": {
+            "type": "string"
+          },
+          "wikiurl": {
+            "type": "string"
+          },
+          "moment_1_caption": {
+            "type": "string"
+          },
+          "moment_1_img_url": {
+            "type": "string"
+          },
+          "moment_2_caption": {
+            "type": "string"
+          },
+          "moment_2_img_url": {
+            "type": "string"
+          },
+          "moment_3_caption": {
+            "type": "string"
+          },
+          "moment_3_img_url": {
+            "type": "string"
+          }
         }
       },
       "Movie": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
-          "title": { "type": "string" },
-          "tagline": { "type": "string" },
-          "overview": { "type": "string" },
-          "release_date": { "type": "string", "format": "date" },
-          "runtime": { "type": "integer", "description": "Runtime in minutes" },
-          "genres": { "type": "array", "items": { "type": "string" } },
-          "origin_country": { "type": "array", "items": { "type": "string" }, "description": "ISO country codes" },
-          "tmdb_id": { "type": "integer" },
-          "imdb_id": { "type": "string" },
-          "poster_path": { "type": "string", "description": "Full HTTPS URL" },
-          "backdrop_path": { "type": "string", "description": "Full HTTPS URL" }
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "tagline": {
+            "type": "string"
+          },
+          "overview": {
+            "type": "string"
+          },
+          "release_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "runtime": {
+            "type": "integer",
+            "description": "Runtime in minutes"
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "origin_country": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ISO country codes"
+          },
+          "tmdb_id": {
+            "type": "integer"
+          },
+          "imdb_id": {
+            "type": "string"
+          },
+          "poster_path": {
+            "type": "string",
+            "description": "Full HTTPS URL"
+          },
+          "backdrop_path": {
+            "type": "string",
+            "description": "Full HTTPS URL"
+          }
         }
       },
       "Nominee": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
-          "name": { "type": "string" },
-          "biography": { "type": "string" },
-          "birthday": { "type": "string", "format": "date" },
-          "deathday": { "type": "string", "format": "date", "nullable": true },
-          "place_of_birth": { "type": "string" },
-          "known_for_department": { "type": "string" },
-          "homepage": { "type": "string" },
-          "tmdb_person_id": { "type": "integer" },
-          "imdb_id": { "type": "string" },
-          "profile_path": { "type": "string", "description": "Full HTTPS URL" }
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "biography": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date"
+          },
+          "deathday": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "place_of_birth": {
+            "type": "string"
+          },
+          "known_for_department": {
+            "type": "string"
+          },
+          "homepage": {
+            "type": "string"
+          },
+          "tmdb_person_id": {
+            "type": "integer"
+          },
+          "imdb_id": {
+            "type": "string"
+          },
+          "profile_path": {
+            "type": "string",
+            "description": "Full HTTPS URL"
+          }
         }
       },
       "Category": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
-          "category_name": { "type": "string" },
-          "category_group": { "type": "string" },
-          "definition": { "type": "string" },
-          "era": { "type": "string" },
-          "history": { "type": "string" }
+          "id": {
+            "type": "integer"
+          },
+          "category_name": {
+            "type": "string"
+          },
+          "category_group": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string"
+          },
+          "era": {
+            "type": "string"
+          },
+          "history": {
+            "type": "string"
+          }
         }
       },
       "Song": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
-          "original_title": { "type": "string" },
-          "artist_names": { "type": "string" },
-          "spotify_id": { "type": "string" },
-          "spotify_url": { "type": "string" },
-          "spotify_track_name": { "type": "string" },
-          "spotify_album_name": { "type": "string" },
-          "spotify_year": { "type": "integer" }
+          "id": {
+            "type": "integer"
+          },
+          "original_title": {
+            "type": "string"
+          },
+          "artist_names": {
+            "type": "string"
+          },
+          "spotify_id": {
+            "type": "string"
+          },
+          "spotify_url": {
+            "type": "string"
+          },
+          "spotify_track_name": {
+            "type": "string"
+          },
+          "spotify_album_name": {
+            "type": "string"
+          },
+          "spotify_year": {
+            "type": "integer"
+          }
         }
       }
     },
     "parameters": {
-      "page": { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 }, "description": "Page number" },
-      "limit": { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 25, "maximum": 100 }, "description": "Results per page (max 100)" },
-      "ids": { "name": "ids", "in": "query", "schema": { "type": "string" }, "description": "Comma-separated IDs e.g. 1,2,3" },
-      "year": { "name": "year", "in": "query", "schema": { "type": "integer" }, "description": "Exact ceremony year" },
-      "yearStart": { "name": "yearStart", "in": "query", "schema": { "type": "integer" }, "description": "Start of year range" },
-      "yearEnd": { "name": "yearEnd", "in": "query", "schema": { "type": "integer" }, "description": "End of year range" }
+      "page": {
+        "name": "page",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "default": 1
+        },
+        "description": "Page number"
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "default": 25,
+          "maximum": 100
+        },
+        "description": "Results per page (max 100)"
+      },
+      "ids": {
+        "name": "ids",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Comma-separated IDs e.g. 1,2,3"
+      },
+      "year": {
+        "name": "year",
+        "in": "query",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Exact ceremony year"
+      },
+      "yearStart": {
+        "name": "yearStart",
+        "in": "query",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Start of year range"
+      },
+      "yearEnd": {
+        "name": "yearEnd",
+        "in": "query",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "End of year range"
+      }
     }
   },
   "paths": {
@@ -142,21 +348,96 @@
         "summary": "List nominations",
         "description": "Returns paginated nominations. Supports filtering by year, nominee, movie, category, winner status, and more.",
         "parameters": [
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/limit" },
-          { "$ref": "#/components/parameters/ids" },
-          { "$ref": "#/components/parameters/year" },
-          { "$ref": "#/components/parameters/yearStart" },
-          { "$ref": "#/components/parameters/yearEnd" },
-          { "name": "nominee", "in": "query", "schema": { "type": "string" }, "description": "Partial match on nominee name" },
-          { "name": "movie", "in": "query", "schema": { "type": "string" }, "description": "Partial match on movie title" },
-          { "name": "category", "in": "query", "schema": { "type": "string" }, "description": "Partial match on category name" },
-          { "name": "winner", "in": "query", "schema": { "type": "boolean" }, "description": "Filter winners (true) or losers (false)" },
-          { "name": "is_song", "in": "query", "schema": { "type": "boolean" }, "description": "Filter song nominations" },
-          { "name": "ceremony_ids", "in": "query", "schema": { "type": "string" }, "description": "Comma-separated ceremony IDs" },
-          { "name": "category_ids", "in": "query", "schema": { "type": "string" }, "description": "Comma-separated category IDs" },
-          { "name": "movie_ids", "in": "query", "schema": { "type": "string" }, "description": "Comma-separated movie IDs" },
-          { "name": "nominee_ids", "in": "query", "schema": { "type": "string" }, "description": "Comma-separated nominee IDs" }
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/ids"
+          },
+          {
+            "$ref": "#/components/parameters/year"
+          },
+          {
+            "$ref": "#/components/parameters/yearStart"
+          },
+          {
+            "$ref": "#/components/parameters/yearEnd"
+          },
+          {
+            "name": "nominee",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on nominee name"
+          },
+          {
+            "name": "movie",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on movie title"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on category name"
+          },
+          {
+            "name": "winner",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter winners (true) or losers (false)"
+          },
+          {
+            "name": "is_song",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter song nominations"
+          },
+          {
+            "name": "ceremony_ids",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated ceremony IDs"
+          },
+          {
+            "name": "category_ids",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated category IDs"
+          },
+          {
+            "name": "movie_ids",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated movie IDs"
+          },
+          {
+            "name": "nominee_ids",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated nominee IDs"
+          }
         ],
         "responses": {
           "200": {
@@ -166,8 +447,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Nomination" } },
-                    "pagination": { "$ref": "#/components/schemas/Pagination" }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Nomination"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
                   }
                 }
               }
@@ -177,18 +465,28 @@
       },
       "post": {
         "summary": "Create nomination",
-        "security": [{ "ApiKeyAuth": [] }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/Nomination" }
+              "schema": {
+                "$ref": "#/components/schemas/Nomination"
+              }
             }
           }
         },
         "responses": {
-          "201": { "description": "Created nomination" },
-          "401": { "description": "Unauthorized" }
+          "201": {
+            "description": "Created nomination"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
         }
       }
     },
@@ -196,22 +494,58 @@
       "get": {
         "summary": "Get nomination by ID",
         "description": "Returns single nomination with embedded movie, ceremony, category, nominee, and song objects.",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
-          "200": { "description": "Nomination with embedded related objects" },
-          "404": { "description": "Not found" }
+          "200": {
+            "description": "Nomination with embedded related objects"
+          },
+          "404": {
+            "description": "Not found"
+          }
         }
       },
       "patch": {
         "summary": "Update nomination",
-        "security": [{ "ApiKeyAuth": [] }],
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Nomination" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Nomination"
+              }
+            }
+          }
         },
         "responses": {
-          "200": { "description": "Updated nomination" },
-          "401": { "description": "Unauthorized" }
+          "200": {
+            "description": "Updated nomination"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
         }
       }
     },
@@ -219,7 +553,11 @@
       "get": {
         "summary": "List all ceremonies",
         "description": "Returns all 97 ceremonies ordered newest first. No pagination.",
-        "parameters": [{ "$ref": "#/components/parameters/ids" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ids"
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of ceremonies",
@@ -228,8 +566,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Ceremony" } },
-                    "count": { "type": "integer" }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Ceremony"
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
                   }
                 }
               }
@@ -239,35 +584,85 @@
       },
       "post": {
         "summary": "Create ceremony",
-        "security": [{ "ApiKeyAuth": [] }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Ceremony" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ceremony"
+              }
+            }
+          }
         },
         "responses": {
-          "201": { "description": "Created" },
-          "401": { "description": "Unauthorized" }
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
         }
       }
     },
     "/api/ceremonies/{id}": {
       "get": {
         "summary": "Get ceremony by ID",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
-          "200": { "description": "Ceremony record" },
-          "404": { "description": "Not found" }
+          "200": {
+            "description": "Ceremony record"
+          },
+          "404": {
+            "description": "Not found"
+          }
         }
       },
       "patch": {
         "summary": "Update ceremony",
-        "security": [{ "ApiKeyAuth": [] }],
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Ceremony" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ceremony"
+              }
+            }
+          }
         },
         "responses": {
-          "200": { "description": "Updated" },
-          "401": { "description": "Unauthorized" }
+          "200": {
+            "description": "Updated"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
         }
       }
     },
@@ -275,13 +670,45 @@
       "get": {
         "summary": "List movies",
         "parameters": [
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/limit" },
-          { "$ref": "#/components/parameters/ids" },
-          { "name": "title", "in": "query", "schema": { "type": "string" }, "description": "Partial match on title" },
-          { "name": "tmdb_id", "in": "query", "schema": { "type": "integer" } },
-          { "name": "imdb_id", "in": "query", "schema": { "type": "string" }, "description": "e.g. tt1234567" },
-          { "name": "genre", "in": "query", "schema": { "type": "string" } }
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/ids"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on title"
+          },
+          {
+            "name": "tmdb_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "imdb_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "e.g. tt1234567"
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -291,8 +718,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Movie" } },
-                    "pagination": { "$ref": "#/components/schemas/Pagination" }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Movie"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
                   }
                 }
               }
@@ -302,41 +736,132 @@
       },
       "post": {
         "summary": "Create movie",
-        "security": [{ "ApiKeyAuth": [] }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Movie" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Movie"
+              }
+            }
+          }
         },
-        "responses": { "201": { "description": "Created" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api/movies/{id}": {
       "get": {
         "summary": "Get movie by ID",
         "description": "Returns movie with all nominations embedded.",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
-        "responses": { "200": { "description": "Movie with nominations" }, "404": { "description": "Not found" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie with nominations"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       },
       "patch": {
         "summary": "Update movie",
-        "security": [{ "ApiKeyAuth": [] }],
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Movie" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Movie"
+              }
+            }
+          }
         },
-        "responses": { "200": { "description": "Updated" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "200": {
+            "description": "Updated"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api/nominees": {
       "get": {
         "summary": "List nominees",
         "parameters": [
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/limit" },
-          { "$ref": "#/components/parameters/ids" },
-          { "name": "name", "in": "query", "schema": { "type": "string" }, "description": "Partial match on name" },
-          { "name": "tmdb_person_id", "in": "query", "schema": { "type": "integer" } },
-          { "name": "imdb_id", "in": "query", "schema": { "type": "string" } },
-          { "name": "known_for_department", "in": "query", "schema": { "type": "string" }, "description": "e.g. Acting, Directing" }
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/ids"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on name"
+          },
+          {
+            "name": "tmdb_person_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "imdb_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "known_for_department",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "e.g. Acting, Directing"
+          }
         ],
         "responses": {
           "200": {
@@ -346,8 +871,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Nominee" } },
-                    "pagination": { "$ref": "#/components/schemas/Pagination" }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Nominee"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
                   }
                 }
               }
@@ -357,28 +889,87 @@
       },
       "post": {
         "summary": "Create nominee",
-        "security": [{ "ApiKeyAuth": [] }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Nominee" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Nominee"
+              }
+            }
+          }
         },
-        "responses": { "201": { "description": "Created" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api/nominees/{id}": {
       "get": {
         "summary": "Get nominee by ID",
         "description": "Returns nominee with full Oscar nomination history embedded.",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
-        "responses": { "200": { "description": "Nominee with nominations" }, "404": { "description": "Not found" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nominee with nominations"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       },
       "patch": {
         "summary": "Update nominee",
-        "security": [{ "ApiKeyAuth": [] }],
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Nominee" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Nominee"
+              }
+            }
+          }
         },
-        "responses": { "200": { "description": "Updated" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "200": {
+            "description": "Updated"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api/categories": {
@@ -386,9 +977,24 @@
         "summary": "List all categories",
         "description": "Returns all 29 award categories. No pagination.",
         "parameters": [
-          { "$ref": "#/components/parameters/ids" },
-          { "name": "category_name", "in": "query", "schema": { "type": "string" } },
-          { "name": "category_group", "in": "query", "schema": { "type": "string" }, "description": "e.g. Acting, Craft" }
+          {
+            "$ref": "#/components/parameters/ids"
+          },
+          {
+            "name": "category_name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category_group",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "e.g. Acting, Craft"
+          }
         ],
         "responses": {
           "200": {
@@ -398,8 +1004,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Category" } },
-                    "count": { "type": "integer" }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Category"
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
                   }
                 }
               }
@@ -412,20 +1025,63 @@
       "get": {
         "summary": "Get category by ID",
         "description": "Returns category with all nominations embedded.",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
-        "responses": { "200": { "description": "Category with nominations" }, "404": { "description": "Not found" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category with nominations"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       }
     },
     "/api/songs": {
       "get": {
         "summary": "List nominated songs",
         "parameters": [
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/limit" },
-          { "$ref": "#/components/parameters/ids" },
-          { "name": "title", "in": "query", "schema": { "type": "string" }, "description": "Partial match on song title" },
-          { "name": "artist", "in": "query", "schema": { "type": "string" }, "description": "Partial match on artist name" },
-          { "name": "year", "in": "query", "schema": { "type": "integer" }, "description": "Spotify year" }
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/ids"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on song title"
+          },
+          {
+            "name": "artist",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on artist name"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Spotify year"
+          }
         ],
         "responses": {
           "200": {
@@ -435,8 +1091,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Song" } },
-                    "pagination": { "$ref": "#/components/schemas/Pagination" }
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Song"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
                   }
                 }
               }
@@ -446,28 +1109,87 @@
       },
       "post": {
         "summary": "Create song",
-        "security": [{ "ApiKeyAuth": [] }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Song" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Song"
+              }
+            }
+          }
         },
-        "responses": { "201": { "description": "Created" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api/songs/{id}": {
       "get": {
         "summary": "Get song by ID",
         "description": "Returns song with all nominations embedded.",
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
-        "responses": { "200": { "description": "Song with nominations" }, "404": { "description": "Not found" } }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Song with nominations"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       },
       "patch": {
         "summary": "Update song",
-        "security": [{ "ApiKeyAuth": [] }],
-        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
-          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Song" } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Song"
+              }
+            }
+          }
         },
-        "responses": { "200": { "description": "Updated" }, "401": { "description": "Unauthorized" } }
+        "responses": {
+          "200": {
+            "description": "Updated"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api/search": {
@@ -475,13 +1197,38 @@
         "summary": "Full-text search across nominations",
         "description": "Searches nominee, movie, and category fields simultaneously. Minimum 2 character query required.",
         "parameters": [
-          { "name": "q", "in": "query", "required": true, "schema": { "type": "string", "minLength": 2 }, "description": "Search term" },
-          { "name": "winner", "in": "query", "schema": { "type": "boolean" } },
-          { "$ref": "#/components/parameters/year" },
-          { "$ref": "#/components/parameters/yearStart" },
-          { "$ref": "#/components/parameters/yearEnd" },
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/limit" }
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2
+            },
+            "description": "Search term"
+          },
+          {
+            "name": "winner",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/year"
+          },
+          {
+            "$ref": "#/components/parameters/yearStart"
+          },
+          {
+            "$ref": "#/components/parameters/yearEnd"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
         ],
         "responses": {
           "200": {
@@ -491,15 +1238,232 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "query": { "type": "string" },
-                    "data": { "type": "array", "items": { "$ref": "#/components/schemas/Nomination" } },
-                    "pagination": { "$ref": "#/components/schemas/Pagination" }
+                    "query": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Nomination"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
                   }
                 }
               }
             }
           },
-          "400": { "description": "Query too short" }
+          "400": {
+            "description": "Query too short"
+          }
+        }
+      }
+    },
+    "/api/stats/top-movies": {
+      "get": {
+        "summary": "Most nominated films",
+        "description": "Returns films ranked by total nomination count. Counts each category once regardless of how many individual nominees.",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "nominations",
+                "wins"
+              ]
+            },
+            "description": "Sort by nominations (default) or wins"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on category name"
+          },
+          {
+            "name": "category_group",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "e.g. Acting, Craft, Direction"
+          },
+          {
+            "name": "yearStart",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Start of year range"
+          },
+          {
+            "name": "yearEnd",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "End of year range"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "maximum": 100
+            },
+            "description": "Number of results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ranked list of movies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "movie_id": {
+                            "type": "integer"
+                          },
+                          "movie": {
+                            "type": "string"
+                          },
+                          "total_nominations": {
+                            "type": "integer"
+                          },
+                          "total_wins": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/stats/top-nominees": {
+      "get": {
+        "summary": "Most nominated people",
+        "description": "Returns people ranked by total nomination count. Each nomination is counted individually.",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "nominations",
+                "wins"
+              ]
+            },
+            "description": "Sort by nominations (default) or wins"
+          },
+          {
+            "name": "known_for_department",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "e.g. Acting, Directing, Writing"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Partial match on category name"
+          },
+          {
+            "name": "category_group",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "e.g. Acting, Craft, Direction"
+          },
+          {
+            "name": "yearStart",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Start of year range"
+          },
+          {
+            "name": "yearEnd",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "End of year range"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "maximum": 100
+            },
+            "description": "Number of results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ranked list of nominees",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "nominee_id": {
+                            "type": "integer"
+                          },
+                          "nominee": {
+                            "type": "string"
+                          },
+                          "total_nominations": {
+                            "type": "integer"
+                          },
+                          "total_wins": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
