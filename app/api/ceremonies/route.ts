@@ -1,11 +1,21 @@
+import { checkRateLimit } from '@/lib/ratelimit'
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { parseIds } from '@/lib/pagination'
 import { isAuthorized, unauthorizedResponse } from '@/lib/auth'
 
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const ids = parseIds(searchParams.get('ids'))
+
+  const rateLimit = await checkRateLimit(request, 'read')
+if (!rateLimit.success) {
+  return NextResponse.json(
+    { error: 'Too many requests. Please slow down.' },
+    { status: 429, headers: rateLimit.headers }
+  )
+}
 
   let query = supabase
     .from('ceremonies')
