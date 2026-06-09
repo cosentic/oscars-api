@@ -127,7 +127,7 @@ GET /api/categories?category_group=Acting
 
 ### GET /api/stats/top-movies
 Returns films ranked by total nomination count (unique categories nominated).
-Query params: sort ("nominations" default or "wins"), category (partial), category_group, yearStart, yearEnd, limit (default 25, max 100)
+Query params: sort ("nominations" default or "wins"), genre (e.g. Drama, Comedy, Horror), yearStart, yearEnd, limit (default 25, max 100)
 Response fields: movie_id, movie, total_nominations, total_wins
 Note: counts each category once regardless of how many individual nominees — so Best Picture with 4 producers counts as 1 nomination.
 
@@ -151,8 +151,11 @@ GET /api/stats/top-nominees?known_for_department=Directing
 Most winning actors:
 GET /api/stats/top-nominees?known_for_department=Acting&sort=wins
 
-Most nominated films in the Acting category group:
-GET /api/stats/top-movies?category_group=Acting
+Most nominated Drama films:
+GET /api/stats/top-movies?genre=Drama
+
+Most winning Horror films:
+GET /api/stats/top-movies?genre=Horror&sort=wins
 
 Most nominated people in a specific year range:
 GET /api/stats/top-nominees?yearStart=2000&yearEnd=2024&sort=wins

@@ -1278,22 +1278,7 @@
             },
             "description": "Sort by nominations (default) or wins"
           },
-          {
-            "name": "category",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Partial match on category name"
-          },
-          {
-            "name": "category_group",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "e.g. Acting, Craft, Direction"
-          },
+          {"name": "genre", "in": "query", "schema": {"type": "string"}, "description": "Filter by genre e.g. Drama, Comedy, Horror"},
           {
             "name": "yearStart",
             "in": "query",

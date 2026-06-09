@@ -310,7 +310,7 @@ GET /api/stats/top-nominees
 #### `/api/stats/top-movies`
 Returns films ranked by total nomination count. Counts each category once regardless of how many individual nominees (e.g. Best Picture with 4 producers = 1 nomination).
 
-**Query parameters:** `sort` (nominations or wins), `category`, `category_group`, `yearStart`, `yearEnd`, `limit` (default 25, max 100)
+**Query parameters:** `sort` (nominations or wins), `genre` (e.g. Drama, Comedy, Horror), `yearStart`, `yearEnd`, `limit` (default 25, max 100)
 
 **Response:**
 ```json
@@ -342,6 +342,12 @@ GET /api/stats/top-movies?limit=10
 
 # Most winning films ever
 GET /api/stats/top-movies?sort=wins&limit=10
+
+# Most nominated Drama films
+GET /api/stats/top-movies?genre=Drama
+
+# Most winning Comedy films
+GET /api/stats/top-movies?genre=Comedy&sort=wins
 
 # Most nominated directors
 GET /api/stats/top-nominees?known_for_department=Directing
