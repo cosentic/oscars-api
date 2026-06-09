@@ -518,12 +518,12 @@ export default function Home() {
         </div>
         <div className="resources-grid">
           {[
-            {icon:'🎬',name:'Nominations',count:'~16,000 RECORDS',desc:'Central fact table. Every nomination ever made, filterable by year, category, winner, and more.',href:'#ep-nominations'},
-            {icon:'🏛️',name:'Ceremonies',count:'97 RECORDS',desc:'Full ceremony metadata including venue, date, overview, and highlight moments.',href:'#ep-ceremonies'},
-            {icon:'🎥',name:'Movies',count:'TMDB ENRICHED',desc:'Film metadata with posters, backdrops, genres, runtime, and IMDB/TMDB IDs.',href:'#ep-movies'},
-            {icon:'⭐',name:'Nominees',count:'8,000+ RECORDS',desc:'Person metadata with biographies, birthdays, profile photos, and full Oscar history.',href:'#ep-nominees'},
-            {icon:'🏆',name:'Categories',count:'29 RECORDS',desc:'All award categories with definitions, history, and groupings.',href:'#ep-categories'},
-            {icon:'🎵',name:'Songs',count:'SPOTIFY ENRICHED',desc:'Nominated original songs with Spotify links, artist names, and album data.',href:'#ep-songs'},
+            {icon:'🎬',name:'Nominations',count:'16,000+ NOMINATIONS',desc:'Central fact table. Every nomination ever made at the individual level, filterable by year, category, winner, and more.',href:'#ep-nominations'},
+            {icon:'⭐',name:'Nominees',count:'8,000+ NOMINEES',desc:'Person metadata with biographies, birthdays, profile photos, and full Oscar history.',href:'#ep-nominees'},
+            {icon:'🎥',name:'Movies',count:'5,000+ MOVIES',desc:'Film metadata with posters, backdrops, genres, runtime, and IMDB/TMDB IDs.',href:'#ep-movies'},
+            {icon:'🏆',name:'Categories',count:'109 CATEGORIES',desc:'All award categories with historical accuracy and definitions, history, and groupings.',href:'#ep-categories'},
+            {icon:'🎵',name:'Songs',count:'500+ SONGS',desc:'Nominated original songs with Spotify links, artist names, and album data.',href:'#ep-songs'},
+            {icon:'🏛️',name:'Ceremonies',count:'97 CEREMONIES',desc:'Full ceremony metadata including venue, date, overview, and highlight moments.',href:'#ep-ceremonies'},
           ].map(r => (
             <a key={r.name} href={r.href} className="resource-card">
               <div className="resource-icon">{r.icon}</div>
