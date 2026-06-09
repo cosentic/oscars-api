@@ -267,15 +267,14 @@ export default function Home() {
       ],
       example: '/api/search?q=spielberg&winner=true&yearStart=1990',
     },
-    {
+{
   id: 'ep-stats-top-movies',
   method: 'GET',
   path: '/api/stats/top-movies',
   desc: 'Most nominated films',
   params: [
     {name:'sort',type:'string',req:false,desc:'Sort by "nominations" (default) or "wins"'},
-    {name:'category',type:'string',req:false,desc:'Partial match on category name'},
-    {name:'category_group',type:'string',req:false,desc:'e.g. Acting, Craft, Direction'},
+    {name:'genre',type:'string',req:false,desc:'Filter by genre e.g. Drama, Comedy, Horror'},
     {name:'yearStart',type:'integer',req:false,desc:'Start of year range'},
     {name:'yearEnd',type:'integer',req:false,desc:'End of year range'},
     {name:'limit',type:'integer',req:false,desc:'Number of results (default: 25, max: 100)'},
@@ -286,7 +285,7 @@ export default function Home() {
     {name:'total_nominations',type:'integer',desc:'Number of unique categories nominated'},
     {name:'total_wins',type:'integer',desc:'Number of unique categories won'},
   ],
-  example: '/api/stats/top-movies?sort=wins&limit=10',
+  example: '/api/stats/top-movies?genre=Drama&sort=wins&limit=10',
 },
 {
   id: 'ep-stats-top-nominees',
