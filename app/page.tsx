@@ -502,10 +502,10 @@ export default function Home() {
       </div>
 
       <div className="stats-bar">
-        <div className="stat-item"><div className="stat-num">97</div><div className="stat-label">CEREMONIES</div></div>
         <div className="stat-item"><div className="stat-num">16K+</div><div className="stat-label">NOMINATIONS</div></div>
         <div className="stat-item"><div className="stat-num">8K+</div><div className="stat-label">NOMINEES</div></div>
-        <div className="stat-item"><div className="stat-num">6</div><div className="stat-label">ENDPOINTS</div></div>
+        <div className="stat-item"><div className="stat-num">5k+</div><div className="stat-label">MOVIES</div></div>
+        <div className="stat-item"><div className="stat-num">97</div><div className="stat-label">CEREMONIES</div></div>
         <div className="stat-item"><div className="stat-num">FREE</div><div className="stat-label">OPEN ACCESS</div></div>
       </div>
 
