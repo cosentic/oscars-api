@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const known_for_department = searchParams.get('known_for_department')
   const yearStart = searchParams.get('yearStart')
   const yearEnd = searchParams.get('yearEnd')
-  const sort = searchParams.get('sort') || 'nominations'
+  const sort = searchParams.get('sort') || 'wins'
   const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '100')))
 
   const { data, error } = await supabase.rpc('top_nominees', {
