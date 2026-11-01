@@ -1,4 +1,4 @@
-import { checkRateLimit } from '@/lib/ratelimit'
+import { checkRateLimit, CACHE_HEADERS } from '@/lib/ratelimit'
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { parseIds } from '@/lib/pagination'
@@ -12,8 +12,8 @@ export async function GET(request: NextRequest) {
   const rateLimit = await checkRateLimit(request, 'read')
 if (!rateLimit.success) {
   return NextResponse.json(
-    { error: 'Too many requests. Please slow down.' },
-    { status: 429, headers: rateLimit.headers }
+    { error: rateLimit.status === 503 ? 'Service temporarily unavailable.' : 'Too many requests. Please slow down.' },
+    { status: rateLimit.status, headers: rateLimit.headers }
   )
 }
 
@@ -30,7 +30,7 @@ if (!rateLimit.success) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ data, count: data.length })
+  return NextResponse.json({ data, count: data.length }, { headers: CACHE_HEADERS })
 }
 
 export async function POST(request: NextRequest) {
