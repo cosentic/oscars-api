@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { rateLimitResponse, CACHE_HEADERS } from '@/lib/ratelimit'
 
 export async function GET(request: NextRequest) {
+  const limited = await rateLimitResponse(request, 'read')
+  if (limited) return limited
+
   const searchParams = request.nextUrl.searchParams
 
   const genre = searchParams.get('genre')
@@ -22,5 +26,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ data, count: data.length })
+  return NextResponse.json({ data, count: data.length }, { headers: CACHE_HEADERS })
 }

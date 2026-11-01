@@ -1,21 +1,16 @@
-import { checkRateLimit, CACHE_HEADERS } from '@/lib/ratelimit'
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { parseIds } from '@/lib/pagination'
 import { isAuthorized, unauthorizedResponse } from '@/lib/auth'
+import { rateLimitResponse, CACHE_HEADERS } from '@/lib/ratelimit'
 
 
 export async function GET(request: NextRequest) {
+  const limited = await rateLimitResponse(request, 'read')
+  if (limited) return limited
+
   const searchParams = request.nextUrl.searchParams
   const ids = parseIds(searchParams.get('ids'))
-
-  const rateLimit = await checkRateLimit(request, 'read')
-if (!rateLimit.success) {
-  return NextResponse.json(
-    { error: rateLimit.status === 503 ? 'Service temporarily unavailable.' : 'Too many requests. Please slow down.' },
-    { status: rateLimit.status, headers: rateLimit.headers }
-  )
-}
 
   let query = supabase
     .from('ceremonies')
@@ -34,6 +29,9 @@ if (!rateLimit.success) {
 }
 
 export async function POST(request: NextRequest) {
+  const limited = await rateLimitResponse(request, 'write')
+  if (limited) return limited
+
   if (!isAuthorized(request)) return unauthorizedResponse()
 
   const body = await request.json()

@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { getPagination, paginatedResponse } from '@/lib/pagination'
+import { rateLimitResponse, CACHE_HEADERS } from '@/lib/ratelimit'
 
 export async function GET(request: NextRequest) {
+  const limited = await rateLimitResponse(request, 'read')
+  if (limited) return limited
+
   const searchParams = request.nextUrl.searchParams
   const { page, limit, from, to } = getPagination(searchParams)
 
@@ -44,5 +48,5 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     query: q,
     ...paginatedResponse(data, count ?? 0, page, limit)
-  })
+  }, { headers: CACHE_HEADERS })
 }

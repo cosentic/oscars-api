@@ -86,3 +86,18 @@ function memoryLimit(key: string, max: number) {
 export const CACHE_HEADERS = {
   'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
 }
+
+/**
+ * Run at the top of every handler:
+ *   const limited = await rateLimitResponse(request, 'read')
+ *   if (limited) return limited
+ * Returns a 429 response when the caller is over the limit, otherwise null.
+ */
+export async function rateLimitResponse(request: Request, type: 'read' | 'write' = 'read') {
+  const r = await checkRateLimit(request, type)
+  if (r.success) return null
+  return Response.json(
+    { error: 'Too many requests. Please slow down.' },
+    { status: r.status, headers: r.headers }
+  )
+}

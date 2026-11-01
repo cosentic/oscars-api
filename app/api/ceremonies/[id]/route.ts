@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { isAuthorized, unauthorizedResponse } from '@/lib/auth'
+import { rateLimitResponse, CACHE_HEADERS } from '@/lib/ratelimit'
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const limited = await rateLimitResponse(request, 'read')
+  if (limited) return limited
+
   const { id } = await params
 
   const { data, error } = await supabase
@@ -18,13 +22,16 @@ export async function GET(
     return NextResponse.json({ error: 'Ceremony not found' }, { status: 404 })
   }
 
-  return NextResponse.json({ data })
+  return NextResponse.json({ data }, { headers: CACHE_HEADERS })
 }
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const limited = await rateLimitResponse(request, 'write')
+  if (limited) return limited
+
   if (!isAuthorized(request)) return unauthorizedResponse()
 
   const { id } = await params
