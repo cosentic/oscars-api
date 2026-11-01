@@ -54,11 +54,28 @@ export async function checkRateLimit(
       } as Record<string, string>,
     }
   } catch (e) {
-    // Redis unreachable or out of quota: refuse quickly rather than crash,
-    // so the API never runs unmetered.
-    console.warn('[ratelimit] limiter unavailable:', e instanceof Error ? e.message : e)
-    return { success: false, status: 503, headers: { 'Retry-After': '60' } as Record<string, string> }
+    // Redis unreachable or out of quota: fall back to a rough per-instance
+    // in-memory limit so real users still get data. (Abusive clients are
+    // blocked earlier by the Vercel Firewall.)
+    console.warn('[ratelimit] limiter unavailable, using memory fallback:', e instanceof Error ? e.message : e)
+    const max = type === 'write' ? 20 : 30
+    const ok = memoryLimit(`${type}:${clientIp(request)}`, max)
+    return { success: ok, status: 429, headers: { 'Retry-After': '60' } as Record<string, string> }
   }
+}
+
+// Fixed 60-second window per key, kept in this function instance's memory.
+const windows = new Map<string, { start: number; count: number }>()
+function memoryLimit(key: string, max: number) {
+  const now = Date.now()
+  const w = windows.get(key)
+  if (!w || now - w.start > 60_000) {
+    if (windows.size > 10_000) windows.clear()
+    windows.set(key, { start: now, count: 1 })
+    return true
+  }
+  w.count++
+  return w.count <= max
 }
 
 /**
